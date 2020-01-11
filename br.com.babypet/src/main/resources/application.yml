@@ -1,0 +1,6 @@
+spring
+  data
+    mongodb
+      database:babypet_db
+      port:27017
+      host:localhost
