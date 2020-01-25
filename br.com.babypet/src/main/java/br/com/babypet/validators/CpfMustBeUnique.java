@@ -15,7 +15,7 @@ public @interface CpfMustBeUnique {
 	
 	public String message() default  "Cpf já cadastrado!";
 	
-	public Class<?>[] group() default{};
+	public Class<?>[] groups() default{};
 	
 	public Class<? extends Payload>[] payload() default{};
 
