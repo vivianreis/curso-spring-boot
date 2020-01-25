@@ -1,4 +1,4 @@
-package br.com.babypet.utils;
+package br.com.babypet.utils.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +12,18 @@ public class RestExceptionHandler {
 	public ResponseEntity<?> handlerNotFoundException(NotFoundException exception) {
 		String message = exception.getMessage();
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+	}
+	
+	@ExceptionHandler(BadRequestException.class)
+	public ResponseEntity<?> handlerBadRequestException(
+			BadRequestException exception){
+		
+		String message = exception.getMessage();
+		MessageErrorResponse errorResponse = exception.getErrorResponse();
+		
+		return ResponseEntity
+				.status(HttpStatus.BAD_REQUEST)
+		        .body(errorResponse);
 	}
 
 }
