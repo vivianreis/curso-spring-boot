@@ -9,6 +9,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import br.com.babypet.utils.ApplicationContextProvider;
 import br.com.babypet.utils.exceptions.BadRequestException;
 import br.com.babypet.utils.exceptions.MessageErrorDetail;
 
@@ -26,8 +27,11 @@ public class CommandValidator<T> extends AbstractValidator {
 		Validator validator = Validation
 				.byDefaultProvider()
 				.configure()
+				.constraintValidatorFactory(
+						ApplicationContextProvider.getValidatorFactory())
 				.messageInterpolator(interpolator)
-				.buildValidatorFactory().getValidator();
+				.buildValidatorFactory()
+				.getValidator();
 
 		Set<ConstraintViolation<T>> violations = validator.validate(command);
 

@@ -25,5 +25,13 @@ public class RestExceptionHandler {
 				.status(HttpStatus.BAD_REQUEST)
 		        .body(errorResponse);
 	}
+	
+	@ExceptionHandler(NoContentException.class)
+	public ResponseEntity<?> handleNoContentEsception(
+			NoContentException exception){
+		return ResponseEntity
+				.status(HttpStatus.NO_CONTENT)
+		        .build();
+	}
 
 }
